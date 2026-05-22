@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" width="240" height="120" role="img" aria-label="Luc — Slotenmaker">
+  <defs>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@500;800&amp;display=swap");
+      .name { font-family: "Inter", system-ui, sans-serif; font-weight: 800; font-size: 72px; fill: #1C2B3A; letter-spacing: -0.02em; }
+      .mark { font-family: "Inter", system-ui, sans-serif; font-weight: 500; font-size: 20px; fill: #3D4856; letter-spacing: 0.22em; }
+    </style>
+  </defs>
+  <text x="0" y="72" class="name">Luc</text>
+  <text x="2" y="100" class="mark">SLOTENMAKER</text>
+</svg>
