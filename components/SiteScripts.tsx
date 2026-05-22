@@ -64,13 +64,10 @@ export default function SiteScripts() {
     cleanups.push(() => stickyObserver.disconnect())
 
     /* ── GSAP + Three.js (async import so they don't block SSR) ── */
-    let rafId: number
-
     async function initAnimations() {
-      const [{ default: gsap }, { ScrollTrigger }, THREE] = await Promise.all([
+      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
         import('gsap'),
         import('gsap/ScrollTrigger'),
-        import('three'),
       ])
 
       gsap.registerPlugin(ScrollTrigger)
@@ -215,82 +212,7 @@ export default function SiteScripts() {
         }
       }
 
-      /* ── Three.js shader ── */
-      const wrap = document.getElementById('shaderWrap')
-      if (!wrap) return
-
-      const renderer = new THREE.WebGLRenderer({ antialias: true })
-      renderer.setPixelRatio(window.devicePixelRatio)
-      wrap.appendChild(renderer.domElement)
-
-      const scene = new THREE.Scene()
-      const camera = new THREE.Camera()
-      camera.position.z = 1
-
-      const geometry = new THREE.PlaneGeometry(2, 2)
-      const material = new THREE.ShaderMaterial({
-        uniforms: {
-          time: { value: 0.0 },
-          resolution: { value: new THREE.Vector2() },
-        },
-        vertexShader: `void main() { gl_Position = vec4(position, 1.0); }`,
-        fragmentShader: `
-          uniform float time;
-          uniform vec2 resolution;
-          void main() {
-            vec2 uv = gl_FragCoord.xy / resolution.xy;
-            vec3 color = vec3(0.0);
-            for (int i = 1; i < 4; i++) {
-              for (int j = 1; j < 6; j++) {
-                float fi = float(i), fj = float(j);
-                float t = time * 0.5;
-                float lineWidth = 0.003 + 0.002 * sin(t * fj);
-                float x = uv.x * fj * 1.5 + t * fi * 0.3;
-                float y = uv.y + sin(x + t * fi) * 0.3;
-                float line = lineWidth / abs(y - 0.5 + sin(x * 2.0 + t) * 0.1);
-                color += line * vec3(
-                  0.5 + 0.5 * sin(t + fi * 1.2),
-                  0.5 + 0.5 * sin(t + fj * 0.8 + 1.5),
-                  0.5 + 0.5 * sin(t + fi * fj * 0.5 + 3.0)
-                );
-              }
-            }
-            gl_FragColor = vec4(color, 1.0);
-          }
-        `,
-      })
-
-      scene.add(new THREE.Mesh(geometry, material))
-
-      const resize = () => {
-        const w = wrap.clientWidth, h = wrap.clientHeight
-        if (!w || !h) return
-        renderer.setSize(w, h, false)
-        material.uniforms.resolution.value.set(w, h)
-      }
-      window.addEventListener('resize', resize)
-      cleanups.push(() => window.removeEventListener('resize', resize))
-
-      let t = 0
-      const tick = () => {
-        rafId = requestAnimationFrame(tick)
-        material.uniforms.time.value = t
-        t += 0.05
-        renderer.render(scene, camera)
-      }
-      requestAnimationFrame(() => { resize(); tick() })
-
-      const onVisibility = () => {
-        if (document.hidden) cancelAnimationFrame(rafId)
-        else tick()
-      }
-      document.addEventListener('visibilitychange', onVisibility)
-      cleanups.push(() => {
-        document.removeEventListener('visibilitychange', onVisibility)
-        cancelAnimationFrame(rafId)
-        renderer.dispose()
-        ScrollTrigger.getAll().forEach(t => t.kill())
-      })
+      cleanups.push(() => ScrollTrigger.getAll().forEach(t => t.kill()))
     }
 
     initAnimations()
