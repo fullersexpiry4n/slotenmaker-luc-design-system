@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="nl">
+<head><meta charset="utf-8"><title>Buttons</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 32px; display: flex; flex-direction: column; gap: 20px; }
+  .row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .label { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-60); min-width: 90px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <span class="label">Primair</span>
+    <button class="btn btn--primary">Bel Luc · 0470 12 34 56</button>
+    <button class="btn btn--primary" style="background:var(--ink-hover)">Hover staat</button>
+  </div>
+  <div class="row">
+    <span class="label">Accent</span>
+    <button class="btn btn--accent">Vraag offerte</button>
+    <button class="btn btn--accent" style="background:var(--brass-hover)">Hover staat</button>
+  </div>
+  <div class="row">
+    <span class="label">Ghost</span>
+    <button class="btn btn--ghost">Bekijk tarieven →</button>
+  </div>
+</body>
+</html>

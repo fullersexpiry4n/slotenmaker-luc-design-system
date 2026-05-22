@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="nl">
+<head><meta charset="utf-8"><title>Tone — do & don't</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .col { display: flex; flex-direction: column; gap: 8px; }
+  .ttl { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
+  .ttl--ok { color: var(--success); }
+  .ttl--bad { color: var(--alert); }
+  .line { font-size: 14px; line-height: 1.45; padding: 10px 14px; border-radius: 8px; }
+  .ok { background: rgba(61,122,78,0.10); color: var(--ink); }
+  .bad { background: rgba(168,68,46,0.10); color: var(--ink-80); }
+  .check, .cross { width: 14px; height: 14px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 10px; font-weight: 800; }
+  .check { background: var(--success); }
+  .cross { background: var(--alert); }
+</style>
+</head>
+<body>
+  <div class="col">
+    <div class="ttl ttl--ok"><span class="check">✓</span> Zo praat Luc</div>
+    <div class="line ok">"Buitengesloten? Bel me. Binnen 30 min sta ik voor je deur."</div>
+    <div class="line ok">"Sleutel kopiëren — €4 per stuk, klaar in 5 min."</div>
+    <div class="line ok">"Ik kom langs en je krijgt de prijs voor we starten."</div>
+  </div>
+  <div class="col">
+    <div class="ttl ttl--bad"><span class="cross">×</span> Zo niet</div>
+    <div class="line bad">"Wij bieden professionele slotenmaker-oplossingen op maat."</div>
+    <div class="line bad">"ACTIE!! Sleutel kopiëren — NU €3,99!!"</div>
+    <div class="line bad">"Ons innovatief team staat 24/7 voor u klaar."</div>
+  </div>
+</body>
+</html>

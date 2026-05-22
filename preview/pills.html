@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="nl">
+<head><meta charset="utf-8"><title>Pills & badges</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 32px; display: flex; flex-direction: column; gap: 16px; }
+  .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .label { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-60); min-width: 90px; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; margin-right: 6px; vertical-align: 1px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <span class="label">Neutraal</span>
+    <span class="pill">Particulier</span>
+    <span class="pill">Handelszaak</span>
+    <span class="pill">Vastgoed</span>
+  </div>
+  <div class="row">
+    <span class="label">Accent</span>
+    <span class="pill pill--accent">Vast tarief</span>
+    <span class="pill pill--accent">5 jaar garantie</span>
+  </div>
+  <div class="row">
+    <span class="label">Success</span>
+    <span class="pill pill--success"><span class="dot" style="background:var(--success)"></span>Beschikbaar nu</span>
+    <span class="pill pill--success">Klaar in 5 min</span>
+  </div>
+</body>
+</html>

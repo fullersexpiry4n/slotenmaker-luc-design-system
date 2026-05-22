@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="nl">
+<head><meta charset="utf-8"><title>Brand colors</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 28px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .swatch { border-radius: 12px; padding: 20px; min-height: 130px; display: flex; flex-direction: column; justify-content: space-between; }
+  .label { font-size: 13px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; }
+  .name { font-weight: 800; font-size: 24px; line-height: 1.1; }
+  .hex { font-weight: 500; font-size: 14px; opacity: 0.85; }
+  .s1 { background: var(--ink); color: #fff; }
+  .s2 { background: var(--brass); color: #fff; }
+  .s3 { background: var(--canvas); color: var(--ink); border: 1px solid var(--ink-20); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="swatch s1">
+      <span class="label">Primair</span>
+      <div>
+        <div class="name">Inkt</div>
+        <div class="hex">#1C2B3A</div>
+      </div>
+    </div>
+    <div class="swatch s2">
+      <span class="label">Accent</span>
+      <div>
+        <div class="name">Messing</div>
+        <div class="hex">#C8953A</div>
+      </div>
+    </div>
+    <div class="swatch s3">
+      <span class="label" style="color:var(--ink-60)">Canvas</span>
+      <div>
+        <div class="name">Gebroken wit</div>
+        <div class="hex" style="color:var(--ink-60)">#F7F4EF</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

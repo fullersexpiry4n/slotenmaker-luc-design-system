@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="nl">
+<head><meta charset="utf-8"><title>Semantic colors</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 28px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .cell { border-radius: 12px; padding: 22px 24px; min-height: 130px; display: flex; flex-direction: column; justify-content: space-between; color: #fff; }
+  .name { font-weight: 800; font-size: 22px; }
+  .hex { font-size: 13px; font-weight: 500; opacity: 0.85; }
+  .role { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
+  .use { font-size: 13px; opacity: 0.85; margin-top: 6px; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="cell" style="background:#3D7A4E">
+      <span class="role">Success</span>
+      <div>
+        <div class="name">Klaar-groen</div>
+        <div class="hex">#3D7A4E</div>
+        <div class="use">"Klaar in 5 min", bevestiging</div>
+      </div>
+    </div>
+    <div class="cell" style="background:#A8442E">
+      <span class="role">Alert</span>
+      <div>
+        <div class="name">Urgent-rood</div>
+        <div class="hex">#A8442E</div>
+        <div class="use">Buitensluiting CTA</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="nl">
+<head><meta charset="utf-8"><title>Forms</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .lbl { font-size: 13px; font-weight: 500; color: var(--ink); }
+</style>
+</head>
+<body>
+  <div class="field">
+    <label class="lbl" for="naam">Naam</label>
+    <input class="input" id="naam" name="naam" type="text" autocomplete="name" value="Sien Lambrechts" />
+  </div>
+  <div class="field">
+    <label class="lbl" for="telefoon">Telefoon</label>
+    <input class="input" id="telefoon" name="telefoon" type="tel" autocomplete="tel" placeholder="0470 12 34 56" />
+  </div>
+  <div class="field">
+    <label class="lbl" for="vraag">Wat is er aan de hand?</label>
+    <input class="input" id="vraag" name="vraag" type="text" autocomplete="off" value="Buitengesloten — sleutel binnen" style="border-color:var(--brass);box-shadow:0 0 0 3px rgba(200,149,58,0.18)" />
+  </div>
+  <div class="field">
+    <label class="lbl" for="adres">Adres</label>
+    <input class="input" id="adres" name="adres" type="text" autocomplete="street-address" placeholder="Straat, nr, gemeente" />
+  </div>
+</body>
+</html>

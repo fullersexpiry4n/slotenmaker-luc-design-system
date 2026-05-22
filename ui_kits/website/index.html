@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F7F4EF">
+  <title>Luc — Slotenmaker Gent · 0470 12 34 56</title>
+  <meta name="description" content="Buitengesloten of slot kapot? Luc staat binnen 30 minuten voor je deur. Vast tarief €85 — geen voorrijkost, dag en nacht bereikbaar.">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/ui_kits/website/site.css">
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" as="script">
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" as="script">
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/three@0.177.0/build/three.min.js" as="script">
+  <style>
+    .shader-canvas-wrap { position: absolute; inset: 0; }
+    .shader-canvas-wrap canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Ga naar inhoud</a>
+
+<!-- ═══════════════════════════════════════════════════════
+     MOBILE STICKY CALL BAR
+═══════════════════════════════════════════════════════ -->
+<div class="sticky-bar" id="stickyBar">
+  <a href="tel:+32470123456" class="sticky-call">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+    Bel Luc · 0470 12 34 56
+  </a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     HEADER
+═══════════════════════════════════════════════════════ -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="#home" class="logo" aria-label="Slotenmaker Luc — naar homepagina">
+      <span class="logo__name">Luc</span>
+      <span class="logo__mark">Slotenmaker</span>
+    </a>
+
+    <nav class="nav" aria-label="Hoofdnavigatie">
+      <a href="#diensten" class="nav-link">Diensten</a>
+      <a href="#tarieven" class="nav-link">Tarieven</a>
+      <a href="#contact"  class="nav-link">Contact</a>
+    </nav>
+
+    <a href="tel:+32470123456" class="btn btn--accent header-cta" aria-label="Bel Luc op 0470 12 34 56">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+      <span class="cta-text">0470 12 34 56</span>
+    </a>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu openen" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav aria-label="Mobiele navigatie">
+    <a href="#diensten" class="mobile-link">Diensten</a>
+    <a href="#tarieven" class="mobile-link">Tarieven</a>
+    <a href="#contact"  class="mobile-link">Contact</a>
+  </nav>
+  <a href="tel:+32470123456" class="btn btn--accent mobile-call">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+    Bel Luc · 0470 12 34 56
+  </a>
+</div>
+
+<main id="main-content">
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-copy reveal">
+      <span class="overline">Slotenmaker · Regio Gent · 24/7</span>
+      <h1 class="hero-title">
+        <span class="line-wrap"><span class="line">Buitengesloten?</span></span>
+        <span class="line-wrap"><span class="line">Bel Luc.</span></span>
+      </h1>
+      <p class="hero-lead">Binnen 30 minuten sta ik voor je deur. Vast tarief, geen voorrijkost, geen verrassingen.</p>
+      <div class="hero-cta">
+        <a href="tel:+32470123456" class="btn btn--accent btn--lg btn--shiny">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          Bel nu · 0470 12 34 56
+        </a>
+        <a href="#diensten" class="btn btn--ghost">Bekijk diensten
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num" data-target="30">0</div>
+          <div class="stat-unit">min</div>
+          <div class="stat-label">Gemiddelde aanrijtijd</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <div class="stat-num" data-target="5">0</div>
+          <div class="stat-unit">jaar</div>
+          <div class="stat-label">Garantie op cilinders</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <div class="stat-prefix">€</div>
+          <div class="stat-num" data-target="85">0</div>
+          <div class="stat-label">Vast tarief · geen voorrijkost</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual reveal reveal--right">
+      <div class="hero-photo">
+        <div class="shader-canvas-wrap" id="shaderWrap" aria-hidden="true"></div>
+        <div class="hero-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+          <div>
+            <div class="badge-title">Erkend vakman</div>
+            <div class="badge-sub">Verzekerd via AXA · Sinds 2012</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     URGENCY BAND
+═══════════════════════════════════════════════════════ -->
+<div class="band">
+  <div class="container band-inner">
+    <div class="band-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span>24/7 bereikbaar</span>
+    </div>
+    <div class="band-dot" aria-hidden="true"></div>
+    <div class="band-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span>Binnen 30 min ter plaatse</span>
+    </div>
+    <div class="band-dot" aria-hidden="true"></div>
+    <div class="band-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      <span>Vast tarief — geen verrassingen</span>
+    </div>
+    <div class="band-dot" aria-hidden="true"></div>
+    <a href="tel:+32470123456" class="band-cta">0470 12 34 56</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     DIENSTEN
+═══════════════════════════════════════════════════════ -->
+<section class="section" id="diensten">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="overline overline--brass">Wat ik doe</span>
+      <h2 class="section-title">Vier diensten,<br>één persoon.</h2>
+      <p class="section-lead">Geen callcenter. Ik neem zelf op, ik kom zelf langs.</p>
+    </div>
+    <div class="services-grid">
+
+      <article class="service-card reveal">
+        <div class="service-card__icon service-card__icon--alert">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div class="service-card__meta">
+          <span class="overline">Spoedhulp · 24/7</span>
+          <h3>Buitensluiting openen</h3>
+          <p>Sleutel binnen, deur dichtgevallen, slot kapot. Ik open zonder boren of breken — in 9 van de 10 gevallen blijft je slot bruikbaar.</p>
+          <ul class="check-list" aria-label="Inbegrepen">
+            <li>Binnen 30 min ter plaatse</li>
+            <li>Erkend bij verzekeringen</li>
+            <li>Ook 's nachts en in het weekend</li>
+          </ul>
+        </div>
+        <div class="service-card__price">
+          <span class="price-amount">€85</span>
+          <span class="price-note">vast tarief, dag en nacht</span>
+        </div>
+      </article>
+
+      <article class="service-card reveal reveal--delay1">
+        <div class="service-card__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
+        </div>
+        <div class="service-card__meta">
+          <span class="overline">In de werkplaats</span>
+          <h3>Sleutel kopiëren</h3>
+          <p>Standaard cilindersleutels en de meeste veiligheidssleutels. Klaar in 5 minuten, geen afspraak nodig.</p>
+          <ul class="check-list" aria-label="Inbegrepen">
+            <li>Klaar in 5 minuten</li>
+            <li>Standaard, dimple, veiligheid, SKG</li>
+            <li>Geen afspraak nodig</li>
+          </ul>
+        </div>
+        <div class="service-card__price">
+          <span class="price-amount">€4</span>
+          <span class="price-note">per stuk, vanaf</span>
+        </div>
+      </article>
+
+      <article class="service-card reveal reveal--delay2">
+        <div class="service-card__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+        </div>
+        <div class="service-card__meta">
+          <span class="overline">Na een inbraak</span>
+          <h3>Slot vervangen</h3>
+          <p>Nieuwe SKG-cilinder, ingebouwd en getest. 5 jaar garantie. Ik leg je uit waarom je vorige slot kwetsbaar was.</p>
+          <ul class="check-list" aria-label="Inbegrepen">
+            <li>SKG** anti-pick, anti-kerntrek</li>
+            <li>Klaar in 45 minuten</li>
+            <li>5 jaar garantie</li>
+          </ul>
+        </div>
+        <div class="service-card__price">
+          <span class="price-amount">€145</span>
+          <span class="price-note">incl. cilinder + plaatsing</span>
+        </div>
+      </article>
+
+      <article class="service-card reveal reveal--delay3">
+        <div class="service-card__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <div class="service-card__meta">
+          <span class="overline">Advies aan huis</span>
+          <h3>Beveiligingscheck</h3>
+          <p>Ik kom langs, kijk je deuren en ramen na, en schrijf op wat eerst aandacht verdient. Geen verkooppraatje, gewoon eerlijk.</p>
+          <ul class="check-list" aria-label="Inbegrepen">
+            <li>45 minuten ter plaatse</li>
+            <li>Schriftelijk verslag binnen 2 dagen</li>
+            <li>Verrekend bij bestelling</li>
+          </ul>
+        </div>
+        <div class="service-card__price">
+          <span class="price-amount">€50</span>
+          <span class="price-note">verrekend als je een slot bestelt</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     HOE HET WERKT
+═══════════════════════════════════════════════════════ -->
+<section class="section section--steps" aria-labelledby="steps-title">
+  <div class="container">
+    <div class="section-header reveal" style="max-width:500px;margin-inline:auto;text-align:center">
+      <span class="overline overline--brass">Hoe het werkt</span>
+      <h2 class="section-title" id="steps-title">Klaar in drie stappen.</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step__num" aria-hidden="true">1</div>
+        <h3 class="step__title">Bel Luc</h3>
+        <p class="step__body">Eén telefoontje. Ik neem zelf op, geef je een eerlijke aankomsttijd en de prijs — voor we vertrekken.</p>
+      </div>
+      <div class="step-arrow" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+      <div class="step reveal reveal--delay1">
+        <div class="step__num" aria-hidden="true">2</div>
+        <h3 class="step__title">Ik kom langs</h3>
+        <p class="step__body">Binnen 30 minuten sta ik voor je deur — met het juiste materiaal. Geen tweede rit nodig.</p>
+      </div>
+      <div class="step-arrow" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+      <div class="step reveal reveal--delay2">
+        <div class="step__num" aria-hidden="true">3</div>
+        <h3 class="step__title">Probleem opgelost</h3>
+        <p class="step__body">Je betaalt de prijs die ik vooraf noemde. Factuur op de spot. Klaar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     TESTIMONIALS
+═══════════════════════════════════════════════════════ -->
+<section class="section section--ink" aria-labelledby="testimonials-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="overline overline--brass">Wat klanten zeggen</span>
+      <h2 class="section-title section-title--light" id="testimonials-title">Echte mensen, echte verhalen.</h2>
+    </div>
+    <div class="testimonials-grid">
+
+      <blockquote class="testimonial reveal">
+        <div class="testimonial__stars" aria-label="5 sterren">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#C8953A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#C8953A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#C8953A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#C8953A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#C8953A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p>"Luc heeft een hart voor zijn klanten in alle opzichten. Rijkt een gamma uitgebalanceerde oplossingen aan waaruit de klant kan kiezen. En is steeds goedgezind en beschikbaar."</p>
+        <footer class="testimonial__author">
+          <div class="testimonial__avatar" aria-hidden="true">W</div>
+          <div>
+            <cite class="testimonial__name">Willy</cite>
+            <span class="testimonial__loc">Kampenhout · januari 2026</span>
+          </div>
+        </footer>
+      </blockquote>
+
+      <blockquote class="testimonial reveal reveal--delay1">
+        <div class="testimonial__stars" aria-label="5 sterren">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#C8953A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#C8953A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#C8953A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#C8953A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#C8953A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p>"Zeer vriendelijke handelaar! Zeer klantvriendelijk en behulpzaam. We hadden een probleempje met een slot maar hij heeft dit netjes en correct opgelost. Een aanrader!"</p>
+        <footer class="testimonial__author">
+          <div class="testimonial__avatar" aria-hidden="true">I</div>
+          <div>
+            <cite class="testimonial__name">Isabelle</cite>
+            <span class="testimonial__loc">Kampenhout · april 2026</span>
+          </div>
+        </footer>
+      </blockquote>
+
+      <blockquote class="testimonial reveal reveal--delay2">
+        <div class="testimonial__stars" aria-label="5 sterren">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#C8953A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#C8953A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#C8953A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#C8953A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#C8953A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p>"Zeer vriendelijk en klantgericht. Luisterd naar wat je nodig hebt en geeft je het juiste advies en uitleg!"</p>
+        <footer class="testimonial__author">
+          <div class="testimonial__avatar" aria-hidden="true">E</div>
+          <div>
+            <cite class="testimonial__name">Emmanuel</cite>
+            <span class="testimonial__loc">Kampenhout · maart 2026</span>
+          </div>
+        </footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     TARIEVEN
+═══════════════════════════════════════════════════════ -->
+<section class="section" id="tarieven" aria-labelledby="tarieven-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="overline overline--brass">Tarieven</span>
+      <h2 class="section-title" id="tarieven-title">Eén prijs. Vooraf. Altijd.</h2>
+      <p class="section-lead">Geen voorrijkost. Geen weekend-toeslag. Je krijgt de prijs voor we starten.</p>
+    </div>
+
+    <div class="pricing-card reveal">
+      <table class="price-table" aria-label="Prijsoverzicht">
+        <thead>
+          <tr>
+            <th scope="col">Dienst</th>
+            <th scope="col">Prijs incl. BTW</th>
+            <th scope="col" class="hide-sm">Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="price-row--featured">
+            <td>
+              <div class="price-label">Buitensluiting openen</div>
+              <div class="price-tag price-tag--alert">Spoed 24/7</div>
+            </td>
+            <td class="price-cell">€85</td>
+            <td class="hide-sm price-detail">Dag en nacht, ook zondag</td>
+          </tr>
+          <tr>
+            <td>Sleutel kopiëren — standaard</td>
+            <td class="price-cell">€4</td>
+            <td class="hide-sm price-detail">Per stuk · klaar in 5 min</td>
+          </tr>
+          <tr>
+            <td>Sleutel kopiëren — veiligheid</td>
+            <td class="price-cell">€18</td>
+            <td class="hide-sm price-detail">Met kaart, dimple of SKG</td>
+          </tr>
+          <tr>
+            <td>Slot vervangen na inbraak</td>
+            <td class="price-cell">€145</td>
+            <td class="hide-sm price-detail">Inclusief SKG**-cilinder + plaatsing</td>
+          </tr>
+          <tr>
+            <td>Slot upgraden (anti-kerntrek)</td>
+            <td class="price-cell">€175</td>
+            <td class="hide-sm price-detail">Inclusief cilinder + beslag</td>
+          </tr>
+          <tr>
+            <td>Beveiligingscheck aan huis</td>
+            <td class="price-cell">€50</td>
+            <td class="hide-sm price-detail">45 min · verrekend bij bestelling</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="price-footnote">Prijzen incl. BTW. Geen voorrijkost binnen 20 km van Gent. Daarbuiten €0,40/km.</p>
+    </div>
+
+    <div class="faq reveal" aria-label="Veelgestelde vragen">
+      <h3 class="faq-title">Vragen die ik vaak krijg</h3>
+
+      <details class="faq-item" open>
+        <summary>Waarom geen voorrijkost?</summary>
+        <p>Omdat ik vind dat je niet moet betalen voor het feit dat ik in mijn bestelwagen zit. De prijs op de site is de prijs — niets meer.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Krijg ik een factuur voor de verzekering?</summary>
+        <p>Altijd. Met BTW-nummer, omschrijving en datum. Veel verzekeraars betalen buitensluitingshulp terug — vraag het na bij jouw makelaar.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Hoe snel ben je er echt?</summary>
+        <p>Binnen de stad Gent: gemiddeld 22 minuten. Randgemeenten: 25–35 minuten. Ik geef bij het opnemen altijd een eerlijke schatting.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Werk je ook voor handelszaken en syndici?</summary>
+        <p>Ja. Voor sleutelsystemen met meer dan 10 cilinders of huurpand-rotaties krijg je een offerte op maat. Bel me en we maken een afspraak.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════════════════════ -->
+<section class="section section--contact" id="contact" aria-labelledby="contact-title">
+  <div class="container contact-grid">
+    <div class="contact-info reveal">
+      <span class="overline overline--brass">Direct contact</span>
+      <h2 class="section-title" id="contact-title">Vraag me iets.</h2>
+      <p class="contact-lead">Bel me direct, of stuur een bericht. Ik bel terug binnen het uur.</p>
+
+      <ul class="contact-list" aria-label="Contactgegevens">
+        <li>
+          <span class="contact-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          </span>
+          <div>
+            <span class="contact-label">Telefoon</span>
+            <a href="tel:+32470123456" class="contact-value">0470 12 34 56</a>
+          </div>
+        </li>
+        <li>
+          <span class="contact-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+          </span>
+          <div>
+            <span class="contact-label">E-mail</span>
+            <a href="mailto:luc@slotenmakerluc.be" class="contact-value">luc@slotenmakerluc.be</a>
+          </div>
+        </li>
+        <li>
+          <span class="contact-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </span>
+          <div>
+            <span class="contact-label">Bereikbaar</span>
+            <span class="contact-value">Ma–za, 7u–22u · spoed ook 's nachts</span>
+          </div>
+        </li>
+        <li>
+          <span class="contact-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          <div>
+            <span class="contact-label">Werkgebied</span>
+            <span class="contact-value">Gent en regio · 20 km gratis</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="contact-form-wrap reveal reveal--right">
+      <form class="contact-form" id="contactForm" novalidate aria-label="Contactformulier">
+        <div class="form-body" id="formBody">
+          <div class="field">
+            <label class="field-label" for="name">Naam</label>
+            <input class="field-input" id="name" name="name" type="text" autocomplete="name" placeholder="Voornaam en familienaam" required>
+          </div>
+          <div class="field">
+            <label class="field-label" for="phone">Telefoon</label>
+            <input class="field-input" id="phone" name="phone" type="tel" autocomplete="tel" placeholder="0470 …" required>
+          </div>
+          <div class="field">
+            <label class="field-label" for="question">Wat is er aan de hand?</label>
+            <input class="field-input" id="question" name="question" type="text" autocomplete="off" placeholder="Buitengesloten / slot kapot / sleutel kopiëren" required>
+          </div>
+          <div class="field">
+            <label class="field-label" for="address">Adres</label>
+            <input class="field-input" id="address" name="address" type="text" autocomplete="street-address" placeholder="Straat, nr, gemeente">
+          </div>
+          <button type="submit" class="btn btn--primary btn--full">
+            Stuur bericht
+          </button>
+          <p class="form-hint">Ik bel terug binnen het uur.</p>
+        </div>
+        <div class="form-success" id="formSuccess" hidden aria-live="polite">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#3D7A4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <h3>Bedankt. Ik bel je terug.</h3>
+          <p>Binnen het uur op je telefoon. Spoed? Bel direct: <a href="tel:+32470123456">0470 12 34 56</a>.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════ -->
+<footer class="site-footer" aria-label="Voettekst">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <div class="logo logo--light">
+        <span class="logo__name">Luc</span>
+        <span class="logo__mark">Slotenmaker</span>
+      </div>
+      <p class="footer-tagline">Eén persoon, één telefoonnummer.<br>Sinds 2012 in en rond Gent.</p>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-heading">Contact</h3>
+      <a href="tel:+32470123456">0470 12 34 56</a>
+      <a href="mailto:luc@slotenmakerluc.be">luc@slotenmakerluc.be</a>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-heading">Bereikbaar</h3>
+      <span>Ma–za · 7u–22u</span>
+      <span>Spoed · 24/7</span>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-heading">Administratief</h3>
+      <span>BTW BE 0712.345.678</span>
+      <span>Verzekerd via AXA</span>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 Luc — Slotenmaker · Gent</span>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Algemene voorwaarden</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.177.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+/* ═══════════════════════════════════════════════════════
+   NON-ANIMATION UTILITIES (always run)
+═══════════════════════════════════════════════════════ */
+
+/* ── Mobile menu ── */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+mobileMenu.querySelectorAll('.mobile-link').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('is-open');
+    hamburger.classList.remove('is-open');
+    hamburger.setAttribute('aria-expanded', false);
+    mobileMenu.setAttribute('aria-hidden', true);
+    document.body.style.overflow = '';
+  });
+});
+hamburger.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('is-open');
+  hamburger.classList.toggle('is-open', open);
+  hamburger.setAttribute('aria-expanded', open);
+  mobileMenu.setAttribute('aria-hidden', !open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+
+/* ── Smooth scroll ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+  });
+});
+
+/* ── Header shadow on scroll ── */
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('is-scrolled', window.scrollY > 20);
+}, { passive: true });
+
+/* ── Contact form ── */
+document.getElementById('contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+  document.getElementById('formBody').hidden = true;
+  document.getElementById('formSuccess').hidden = false;
+});
+
+/* ── Sticky call bar ── */
+const stickyBar = document.getElementById('stickyBar');
+new IntersectionObserver(([entry]) => {
+  stickyBar.classList.toggle('is-visible', !entry.isIntersecting);
+}, { threshold: 0 }).observe(document.getElementById('home'));
+
+/* ═══════════════════════════════════════════════════════
+   GSAP ANIMATIONS
+═══════════════════════════════════════════════════════ */
+gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.config({ ignoreMobileResize: true });
+
+const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (noMotion) {
+  /* Make everything visible instantly */
+  gsap.set('.hero-copy, .hero-visual, .hero-copy > *, .hero-stats > *, .hero-title .line', { opacity: 1, y: 0, x: 0, scale: 1 });
+} else {
+
+  /* ─────────────────────────────────────────────────────
+     SET INITIAL STATES (synchronous — no flash)
+  ───────────────────────────────────────────────────── */
+  gsap.set('.site-header', { yPercent: -100 });
+  gsap.set(['.logo', '.nav-link', '.header-cta'], { opacity: 0, y: -10 });
+  gsap.set('.hero-copy .overline', { opacity: 0, y: 20 });
+  gsap.set('.hero-title .line', { opacity: 0, y: '105%' });
+  gsap.set('.hero-lead', { opacity: 0, y: 24 });
+  gsap.set('.hero-cta .btn', { opacity: 0, y: 18 });
+  gsap.set(['.stat', '.stat-divider'], { opacity: 0, y: 16 });
+  gsap.set('.hero-photo', { opacity: 0, x: 40, scale: 0.96 });
+  gsap.set('.hero-badge', { opacity: 0, y: 20, scale: 0.88 });
+
+  /* ─────────────────────────────────────────────────────
+     PAGE LOAD MASTER TIMELINE
+  ───────────────────────────────────────────────────── */
+  const intro = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 0.05 });
+
+  intro
+    .to('.site-header',  { yPercent: 0, duration: 0.65, ease: 'power2.out' })
+    .to(['.logo', '.nav-link', '.header-cta'], { opacity: 1, y: 0, stagger: 0.07, duration: 0.45 }, '-=0.3')
+    /* hero photo comes in early, slides from right */
+    .to('.hero-photo',   { opacity: 1, x: 0, scale: 1, duration: 1.0, ease: 'power2.out' }, 0.35)
+    /* hero copy staggers in */
+    .to('.hero-copy .overline', { opacity: 1, y: 0, duration: 0.5 }, 0.5)
+    .to('.hero-title .line',    { opacity: 1, y: '0%', stagger: 0.14, duration: 0.85 }, 0.62)
+    .to('.hero-lead',           { opacity: 1, y: 0, duration: 0.55 }, 0.92)
+    .to('.hero-cta .btn',       { opacity: 1, y: 0, stagger: 0.10, duration: 0.5 }, 1.08)
+    .to(['.stat-divider', '.stat'], { opacity: 1, y: 0, stagger: 0.07, duration: 0.5 }, 1.2)
+    /* badge bounces in last */
+    .to('.hero-badge',   { opacity: 1, y: 0, scale: 1, duration: 0.65, ease: 'back.out(2.8)' }, 1.4);
+
+  /* ── Badge gentle float loop ── */
+  gsap.to('.hero-badge', {
+    y: '-=7', repeat: -1, yoyo: true,
+    duration: 2.8, ease: 'sine.inOut', delay: 2.2
+  });
+
+  /* ── Hero parallax (scrub) ── */
+  gsap.to('.hero-visual', {
+    y: -70, ease: 'none',
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.5 }
+  });
+  gsap.to('.hero-copy', {
+    y: -28, ease: 'none',
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 2 }
+  });
+
+  /* ─────────────────────────────────────────────────────
+     SCROLL — BAND
+  ───────────────────────────────────────────────────── */
+  gsap.from('.band-item, .band-dot, .band-cta', {
+    opacity: 0, y: 18, stagger: 0.09, duration: 0.55, ease: 'power2.out',
+    scrollTrigger: { trigger: '.band', start: 'top 90%' }
+  });
+
+  /* ─────────────────────────────────────────────────────
+     SCROLL — SECTION HEADERS (each gets its own timeline)
+  ───────────────────────────────────────────────────── */
+  gsap.utils.toArray('.section-header').forEach(hdr => {
+    const tl = gsap.timeline({ scrollTrigger: { trigger: hdr, start: 'top 86%' } });
+    const overline = hdr.querySelector('.overline');
+    const title    = hdr.querySelector('.section-title');
+    const lead     = hdr.querySelector('.section-lead');
+    if (overline) tl.from(overline, { opacity: 0, y: 14, duration: 0.45 });
+    if (title)    tl.from(title,    { opacity: 0, y: 32, duration: 0.75, ease: 'power3.out' }, '-=0.15');
+    if (lead)     tl.from(lead,     { opacity: 0, y: 18, duration: 0.5  }, '-=0.35');
+  });
+
+  /* ─────────────────────────────────────────────────────
+     SCROLL — SERVICE CARDS (stagger + 3-D tilt hover)
+  ───────────────────────────────────────────────────── */
+  gsap.set('.service-card', { transformPerspective: 900 });
+
+  ScrollTrigger.batch('.service-card', {
+    onEnter: batch => gsap.from(batch, {
+      y: 64, opacity: 0, scale: 0.97, stagger: 0.11, duration: 0.8, ease: 'power3.out'
+    }),
+    start: 'top 88%', once: true
+  });
+
+  document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - 0.5;
+      const y = (e.clientY - r.top)  / r.height - 0.5;
+      gsap.to(card, { rotateY: x * 8, rotateX: -y * 8, duration: 0.35, ease: 'power2.out' });
+    });
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, { rotateY: 0, rotateX: 0, duration: 0.6, ease: 'power2.out' });
+    });
+  });
+
+  /* ─────────────────────────────────────────────────────
+     SCROLL — HOW IT WORKS (steps sequential)
+  ───────────────────────────────────────────────────── */
+  gsap.utils.toArray('.step').forEach(step => {
+    const tl = gsap.timeline({ scrollTrigger: { trigger: step, start: 'top 87%' } });
+    tl.from(step.querySelector('.step__num'),   { scale: 0, opacity: 0, duration: 0.55, ease: 'back.out(2.5)' })
+      .from(step.querySelector('.step__title'), { y: 20, opacity: 0, duration: 0.45, ease: 'power2.out' }, '-=0.1')
+      .from(step.querySelector('.step__body'),  { y: 14, opacity: 0, duration: 0.45, ease: 'power2.out' }, '-=0.25')
+      .from(step, { background: 'rgba(200,149,58,0.06)', duration: 0.6, ease: 'power2.inOut' }, 0);
+  });
+
+  gsap.from('.step-arrow', {
+    opacity: 0, x: -18, stagger: 0.18, duration: 0.5, ease: 'power2.out',
+    scrollTrigger: { trigger: '.steps-grid', start: 'top 86%' }
+  });
+
+/* ─────────────────────────────────────────────────────
+     SCROLL — TESTIMONIALS
+  ───────────────────────────────────────────────────── */
+  ScrollTrigger.batch('.testimonial', {
+    onEnter: batch => gsap.from(batch, {
+      y: 55, opacity: 0, rotateX: 7, transformPerspective: 700,
+      stagger: 0.13, duration: 0.8, ease: 'power3.out'
+    }),
+    start: 'top 90%', once: true
+  });
+
+  /* ─────────────────────────────────────────────────────
+     SCROLL — TRUST BAR
+  ───────────────────────────────────────────────────── */
+  gsap.from('.trust-item', {
+    opacity: 0, y: 14, scale: 0.94, stagger: 0.09, duration: 0.5, ease: 'back.out(1.4)',
+    scrollTrigger: { trigger: '.trust-bar', start: 'top 90%' }
+  });
+
+  /* ─────────────────────────────────────────────────────
+     SCROLL — PRICING TABLE ROWS
+  ───────────────────────────────────────────────────── */
+  gsap.from('.price-table thead tr', {
+    opacity: 0, y: -12, duration: 0.4, ease: 'power2.out',
+    scrollTrigger: { trigger: '.price-table', start: 'top 85%' }
+  });
+  gsap.from('.price-table tbody tr', {
+    opacity: 0, x: -28, stagger: 0.08, duration: 0.55, ease: 'power2.out',
+    scrollTrigger: { trigger: '.price-table', start: 'top 85%' }
+  });
+
+  /* ─────────────────────────────────────────────────────
+     SCROLL — FAQ
+  ───────────────────────────────────────────────────── */
+  gsap.from('.faq-title', {
+    opacity: 0, y: 20, duration: 0.5, ease: 'power2.out',
+    scrollTrigger: { trigger: '.faq', start: 'top 85%' }
+  });
+  gsap.from('.faq-item', {
+    opacity: 0, y: 18, stagger: 0.09, duration: 0.5, ease: 'power2.out',
+    scrollTrigger: { trigger: '.faq', start: 'top 85%' }
+  });
+
+  /* ─────────────────────────────────────────────────────
+     SCROLL — CONTACT
+  ───────────────────────────────────────────────────── */
+  gsap.from('.contact-info .overline', {
+    opacity: 0, y: 14, duration: 0.4,
+    scrollTrigger: { trigger: '.contact-info', start: 'top 86%' }
+  });
+  gsap.from('.contact-info .section-title', {
+    opacity: 0, y: 28, duration: 0.65, ease: 'power3.out',
+    scrollTrigger: { trigger: '.contact-info', start: 'top 86%' }
+  });
+  gsap.from('.contact-list li', {
+    opacity: 0, x: -28, stagger: 0.1, duration: 0.55, ease: 'power2.out',
+    scrollTrigger: { trigger: '.contact-list', start: 'top 87%' }
+  });
+  gsap.from('.contact-form', {
+    opacity: 0, y: 44, duration: 0.8, ease: 'power3.out',
+    scrollTrigger: { trigger: '.contact-form', start: 'top 90%' }
+  });
+  gsap.from('.field', {
+    opacity: 0, y: 14, stagger: 0.07, duration: 0.45, ease: 'power2.out',
+    scrollTrigger: { trigger: '.form-body', start: 'top 88%' }
+  });
+
+  /* ─────────────────────────────────────────────────────
+     SCROLL — FOOTER
+  ───────────────────────────────────────────────────── */
+  gsap.from('.footer-brand, .footer-col', {
+    opacity: 0, y: 28, stagger: 0.09, duration: 0.6, ease: 'power2.out',
+    scrollTrigger: { trigger: '.site-footer', start: 'top 92%' }
+  });
+
+  /* ─────────────────────────────────────────────────────
+     COUNTERS — GSAP powered
+  ───────────────────────────────────────────────────── */
+  document.querySelectorAll('[data-target]').forEach(el => {
+    ScrollTrigger.create({
+      trigger: el, start: 'top 82%', once: true,
+      onEnter() {
+        const obj = { val: 0 };
+        gsap.to(obj, {
+          val: +el.dataset.target, duration: 1.9, ease: 'power2.out',
+          onUpdate() { el.textContent = Math.round(obj.val); }
+        });
+      }
+    });
+  });
+
+  /* ─────────────────────────────────────────────────────
+     MAGNETIC BUTTONS
+  ───────────────────────────────────────────────────── */
+  document.querySelectorAll('.btn--accent, .btn--primary').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      gsap.to(btn, {
+        x: (e.clientX - r.left - r.width  / 2) * 0.28,
+        y: (e.clientY - r.top  - r.height / 2) * 0.28,
+        duration: 0.3, ease: 'power2.out'
+      });
+    });
+    btn.addEventListener('mouseleave', () => {
+      gsap.to(btn, { x: 0, y: 0, duration: 0.65, ease: 'elastic.out(1, 0.45)' });
+    });
+  });
+
+  /* ─────────────────────────────────────────────────────
+     LOGO HOVER LETTERSPACING TWEAK
+  ───────────────────────────────────────────────────── */
+  const logoMark = document.querySelector('.logo__mark');
+  document.querySelector('.logo').addEventListener('mouseenter', () => {
+    gsap.to(logoMark, { letterSpacing: '0.30em', duration: 0.35, ease: 'power2.out' });
+  });
+  document.querySelector('.logo').addEventListener('mouseleave', () => {
+    gsap.to(logoMark, { letterSpacing: '0.22em', duration: 0.4, ease: 'power2.out' });
+  });
+
+} /* end noMotion else */
+</script>
+
+<script>
+(function () {
+  const wrap = document.getElementById('shaderWrap');
+  if (!wrap || typeof THREE === 'undefined') return;
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(window.devicePixelRatio);
+  wrap.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.Camera();
+  camera.position.z = 1;
+
+  const geometry = new THREE.PlaneGeometry(2, 2);
+  const material = new THREE.ShaderMaterial({
+    uniforms: {
+      time:       { value: 0.0 },
+      resolution: { value: new THREE.Vector2() },
+    },
+    vertexShader: `void main() { gl_Position = vec4(position, 1.0); }`,
+    fragmentShader: `
+      uniform float time;
+      uniform vec2 resolution;
+      void main() {
+        vec2 uv = gl_FragCoord.xy / resolution.xy;
+        vec3 color = vec3(0.0);
+        for (int i = 1; i < 4; i++) {
+          for (int j = 1; j < 6; j++) {
+            float fi = float(i), fj = float(j);
+            float t = time * 0.5;
+            float lineWidth = 0.003 + 0.002 * sin(t * fj);
+            float x = uv.x * fj * 1.5 + t * fi * 0.3;
+            float y = uv.y + sin(x + t * fi) * 0.3;
+            float line = lineWidth / abs(y - 0.5 + sin(x * 2.0 + t) * 0.1);
+            color += line * vec3(
+              0.5 + 0.5 * sin(t + fi * 1.2),
+              0.5 + 0.5 * sin(t + fj * 0.8 + 1.5),
+              0.5 + 0.5 * sin(t + fi * fj * 0.5 + 3.0)
+            );
+          }
+        }
+        gl_FragColor = vec4(color, 1.0);
+      }
+    `,
+  });
+
+  scene.add(new THREE.Mesh(geometry, material));
+
+  function resize() {
+    const w = wrap.clientWidth, h = wrap.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h, false); /* false = don't overwrite canvas CSS */
+    material.uniforms.resolution.value.set(w, h);
+  }
+  window.addEventListener('resize', resize);
+
+  let raf, t = 0;
+  function tick() {
+    raf = requestAnimationFrame(tick);
+    material.uniforms.time.value = t;
+    t += 0.05;
+    renderer.render(scene, camera);
+  }
+
+  /* defer until after first layout so clientWidth/Height are non-zero */
+  requestAnimationFrame(function () { resize(); tick(); });
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) cancelAnimationFrame(raf);
+    else tick();
+  });
+})();
+</script>
+
+</body>
+</html>

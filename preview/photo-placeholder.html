@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="nl">
+<head><meta charset="utf-8"><title>Photo placeholder</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .slot { background: var(--photo-bg); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; color: var(--ink-60); font-size: 13px; font-weight: 500; height: 180px; }
+  .slot svg { opacity: 0.5; }
+  .meta { font-size: 11px; color: var(--ink-40); font-weight: 400; }
+</style>
+</head>
+<body>
+  <div class="slot">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m21 17-5-5L5 21"/></svg>
+    <span>Foto van Luc hier</span>
+    <span class="meta">Handen op slot · warm licht</span>
+  </div>
+  <div class="slot">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m21 17-5-5L5 21"/></svg>
+    <span>Foto van klant hier</span>
+    <span class="meta">Klant op drempel · echt moment</span>
+  </div>
+</body>
+</html>

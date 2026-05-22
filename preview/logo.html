@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="nl">
+<head><meta charset="utf-8"><title>Logo</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 32px; }
+  .row { display: flex; align-items: center; gap: 48px; }
+  .frame { flex: 1; display: flex; align-items: center; justify-content: center; padding: 28px 32px; border-radius: 12px; }
+  .frame--light { background: var(--canvas); border: 1px solid var(--ink-20); }
+  .frame--dark { background: var(--ink); }
+  .logo-block { display: inline-flex; flex-direction: column; align-items: flex-start; line-height: 1; }
+  .name { font-weight: 800; font-size: 56px; letter-spacing: -0.02em; line-height: 1; }
+  .mark { font-weight: 500; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; margin-top: 10px; }
+  .name--light { color: var(--ink); }
+  .mark--light { color: var(--ink-80); }
+  .name--dark { color: #F7F4EF; }
+  .mark--dark { color: var(--brass); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="frame frame--light">
+      <div class="logo-block">
+        <span class="name name--light">Luc</span>
+        <span class="mark mark--light">Slotenmaker</span>
+      </div>
+    </div>
+    <div class="frame frame--dark">
+      <div class="logo-block">
+        <span class="name name--dark">Luc</span>
+        <span class="mark mark--dark">Slotenmaker</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
