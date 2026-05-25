@@ -191,6 +191,7 @@ export default function SlotKapotPage() {
               fill
               style={{ objectFit: 'cover', objectPosition: 'center' }}
               priority
+              fetchPriority="high"
               sizes="100vw"
             />
             <div className="blog-hero__overlay" />

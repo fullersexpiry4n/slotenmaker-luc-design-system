@@ -1157,7 +1157,7 @@ a.contact-value:hover { color: var(--brass); text-decoration: underline; text-un
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--brass);
+  color: var(--ink-80); /* was --brass (#c8953a = 2.68:1 fail → #3D4856 = 10.5:1 pass) */
   margin-bottom: 10px;
 }
 .blog-snippet p {
@@ -1396,7 +1396,7 @@ a.contact-value:hover { color: var(--brass); text-decoration: underline; text-un
 .blog-author__info { display: flex; flex-direction: column; gap: 2px; }
 .blog-author__name { font-size: 14px; font-weight: 700; color: var(--ink); }
 .blog-author__role { font-size: 12px; color: var(--ink-60); }
-.blog-author__dates { font-size: 12px; color: var(--ink-40); margin-top: 2px; }
+.blog-author__dates { font-size: 12px; color: var(--ink-60); margin-top: 2px; } /* was --ink-40 (#98A0A9 = 2.64:1 fail → #6B7480 = 4.55:1 pass) */
 
 /* Inline blog links */
 .blog-link {
